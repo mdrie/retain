@@ -17,3 +17,14 @@ fn main() {
 
     println!("{:?}", args);
 }
+
+fn retain<'a>(input: &'a[&'a str]) -> &'a [&'a str] {
+    &[]
+}
+
+#[test]
+fn keep_first_and_last() {
+    let result = retain(&["a", "b", "c"]);
+    assert_eq!(*(result.first().unwrap_or(&"")), "a");
+    assert_eq!(*(result.last().unwrap_or(&"")), "c");
+}
